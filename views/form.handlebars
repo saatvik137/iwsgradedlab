@@ -1,0 +1,54 @@
+<div class="card card-body">
+    <h3> PLEASE FILL THIS FORM :D   </h3>
+    <form action="/formSubmit" method="post">
+        <div class="form-group">
+            <label for="title">First Name</label>
+            <input type="text" class="form-control" name="fname"  required>
+        </div>
+        <div class="form-group">
+            <label for="title">Last Name</label>
+            <input type="text" class="form-control" name="lname"  required>
+        </div>
+        <div class="form-group">
+            <label for="title">Roll Number</label>
+            <input type="text" class="form-control" name="rollnu"  required>
+        </div>
+        <div class="form-group">
+            <label for="title">Email</label>
+            <input type="text" class="form-control" name="email"  required>
+        </div>
+        <div class="form-group">
+            <label for="title">Gender</label>
+            <label class="radio-inline"><input type="radio" name="Sex" checked value="male">Male</label>
+            <label class="radio-inline"><input type="radio" name="Sex" value="female">Female</label>
+        </div>
+         <div class="form-group">
+            <label for="sel1">Select Sports:</label>
+                <select class="form-control" id="sel1" multiple name="sport" >
+                    <option value="Cricket">Cricket</option>
+                    <option value="Badminton ">Badminton</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Hockey">Hockey</option>
+                    <option value="Kabaddi" >Kabaddi</option>
+                </select>
+        </div>
+
+         <div class="form-group">
+            <label for="title">Shirt Size </label>
+            <div class="checkbox">
+            <label><input type="checkbox" value="S" name="size"> S</label>
+            </div>
+            <div class="checkbox">
+            <label><input type="checkbox" value="M" name="size" > M</label>
+            </div>
+            <div class="checkbox ">
+            <label><input type="checkbox" value="L" name="size"> L</label>
+            </div>
+            <div class="checkbox ">
+            <label><input type="checkbox" value="XL" name="size"> XL</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+</div>

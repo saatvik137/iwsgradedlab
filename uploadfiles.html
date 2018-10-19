@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>
+    Upload 
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* Full height */
+  height: 50%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Images used */
+.img1 { background-image: url("img1.jpg"); }
+.img2 { background-image: url("img2.jpg"); }
+.img3 { background-image: url("img3.jpg"); }
+.img4 { background-image: url("img4.jpg"); }
+.img5 { background-image: url("img5.jpg"); }
+.img6 { background-image: url("img6.jpg"); }
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  font-size: 80px;
+  border: 10px solid #f1f1f1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="bg-image img1"></div>
+<div class="bg-image img2"></div>
+<div class="bg-image img3"></div>
+<div class="bg-image img4"></div>
+<div class="bg-image img5"></div>
+<div class="bg-image img6"></div>
+
+<div class="bg-text">
+ 
+<h6> UPLOAD FILES TO THE FIREBASE DB </h6>
+<br>
+<!-- <input type="file" name="file" id="file" size="6"> -->
+<label class="custom-file-upload">
+    <input type="file"/ id="file" name="file">
+    <h6>  Upload the JSON </h6>
+</label>
+<textarea style="width: 75% ; height: 100px ; color: red ; font-size: 10px" id="content" ></textarea>
+</div>
+</body>
+</html>
+
+
+
+
+<script>
+
+document.getElementById('file').onchange = function(){
+
+  var file = this.files[0];
+
+  var reader = new FileReader();
+  var textarea = document.getElementById("content") ; 
+  reader.onload = function(progressEvent){
+    // Entire file
+    //console.log(this.result);
+    textarea.value = this.result ; 
+
+    // By lines
+    var lines = this.result.split('}');
+    for(var line = 0; line < lines.length; line++){
+      console.log("line is " + lines[line]);
+      console.log ("we will only put the first line in our db ") ;
+      console.log(typeof lines[line] ) ;
+      var data = JSON.parse(lines[line] + '}') ;
+
+      var dat = JSON.parse(lines[line] + '}') ;
+
+      var form_data = new FormData();
+
+      for ( var key in data ) {
+        console.log(key + data[key]) ; 
+          // datt[key] = data[key] ; 
+             form_data.append(key, data[key]);
+
+      }
+
+      console.log(data) ; 
+      console.log(form_data.get("email")); 
+
+
+
+      $.post("https://iwslab.herokuapp.com/formSubmitAjax/formSubmitAjax",data,
+    function(data, status){
+        //alert("Data: " + data + "\nStatus: " + status);
+        alert("UPLOAD ho gayi ") ; 
+    });
+  
+  
+
+
+      break;
+
+
+    }
+  };
+  reader.readAsText(file);
+};
+</script>

@@ -1,0 +1,1 @@
+{"fname":"Saatvik","lname":"upadhyay","rollnu":"1510110318","email":"su370@snu.edu.in","Sex":"male","sport":"Badminton ","size":"M"}
